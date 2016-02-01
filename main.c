@@ -1,36 +1,30 @@
-//
-// Created by maksspace on 30.01.16.
-//
-
-
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdint.h>
-#include "mylist.h"
+#include <stdlib.h>
+#include <time.h>
 
-struct Coord {
-    int x, y;
-    struct mylist __list_link__;
-};
+#include "list.h"
 
-int main()
+
+LIST_NODE_TYPE_NEW(int, node_int);
+
+int main(int argc, char *argv[])
 {
+
+    node_int* my_numbers = malloc(sizeof(node_int));
+    LIST_NODE_LINK_INIT(my_numbers);
+    my_numbers->data = 0;
     
-    MYLIST_HEAD_NEW(coords);
-    
-    for (int i = 0; i < 100; i++) {
-        struct Coord* temp = malloc(sizeof(struct Coord));
-        temp->x = i;
-        temp->y = i + 1;
-        MYLIST_LINK_INIT(temp);
-        mylist_prepend(&temp->__list_link__, &coords);
+    for(int i = 1; i < 1000; i++) {
+        node_int* tmp = malloc(sizeof(node_int));
+        tmp->data = i;
+        LIST_PREPEND(tmp, my_numbers);
     }
     
-    MYLIST_FOREACH(struct Coord, &coords, 100)
-        printf("(%d, %d)\n", __current_struct_ptr__->x, __current_struct_ptr__->y);
-    MYLIST_FOREACH_END
+    for(size_t current = LIST_ITER(my_numbers); current != 0; LIST_ITER_DOWN(current, node_int, my_numbers))
+        printf("%d\n", LIST_NODE_GET(node_int, current)->data);
     
-    mylist_free(struct Coord, &coords, 100);
-    
+    LIST_DELETE_STATIC(node_int, my_numbers, free);
+
     return 0;
 }
