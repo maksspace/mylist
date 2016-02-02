@@ -13,7 +13,7 @@ You can create any kind of data structure as nodes that should be as follows:
  ```
 This library  not have a special function for creating new nodes. Just create pointer on new node and allocate memory for her as you want.
 
- # api
+# api
  Insert $node after $tail, and return pointer on new tail of list
  ```C
  void* list_append(void* tail, void* node);
