@@ -2,83 +2,53 @@
 // Doubly linked list implementation by maksspace //
 // ---------------------------------------------- //
 
-#include <stdint.h>
-
 #ifndef maksspace_list_h
 #define maksspace_list_h
 
-#define LIST_NODE(type) \
-    struct {            \
-        size_t next;    \
-        size_t prev;    \
-        type data;      \
-    }
+typedef struct { void *prev, *next; } node_link_t;
 
-#define NEXT_NODE_PTR(size_t_name)               *((size_t*)(size_t_name))                                             // return pointer to next node
-#define PREV_NODE_PTR(size_t_name)               *(((size_t*)(size_t_name)) + 1)                                       // return pointer to previous node
-#define LIST_NODE_TYPE_NEW(type, name)           typedef LIST_NODE(type) name                                          // creates a node type "name" with the type data field == "type"
-#define NODE_LINK_INIT(name, next_val, prev_val) {NEXT_NODE_PTR(name) = (next_val); PREV_NODE_PTR(name) = (prev_val);} // initializes node's link
-#define LIST_NODE_VAL(type, node_ptr)            ((type*)(node_ptr))                                                   // return pointer to node type == "type"
-#define LIST_ITER(ptr)                           (size_t)(ptr)                                                         // create list iterator
+/* this macros through the list starting from the $head while maintaining the current node in $current */
+#define list_foreach(head, current) \
+    for(typeof(head) current = head; current != NULL; current = current->next)
 
-// allocate new node and return pointer on him
-void* list_node_new(size_t sizeof_node, void*(node_allocator)(size_t))
-{
-    void* new_node = node_allocator(sizeof_node);
-    if(new_node != NULL)
-        NODE_LINK_INIT(new_node, 0, 0);
-    return new_node;
+/* insert $node before $head, and return pointer on new head of list */
+void* list_prepend(void* node, void* head) {
+    *(node_link_t*)node = (node_link_t){NULL, head};
+    return ((node_link_t*)head)->prev = node;
 }
 
-// insert new_node betwin prev_node and next_node
-void list_insert(size_t new_node, size_t prev_node, size_t next_node)
-{
-    if(next_node == 0) {
-        NEXT_NODE_PTR(prev_node) = new_node;
-        PREV_NODE_PTR(new_node) = prev_node;
-        NEXT_NODE_PTR(new_node) = 0;
-    }
-    else {
-        PREV_NODE_PTR(next_node) = new_node;
-        NEXT_NODE_PTR(new_node)  = next_node;
-        PREV_NODE_PTR(new_node)  = prev_node;
-        NEXT_NODE_PTR(prev_node) = new_node;
-    }
+/* insert $node after $tail, and return pointer on new tail of list */
+void* list_append(void* tail, void* node) {
+    *(node_link_t*)node = (node_link_t){tail, NULL};
+    return ((node_link_t*)tail)->next = node;
 }
 
-// insert new_node before head node and return pointer to new head
-size_t list_prepend(size_t new_node_ptr, size_t head_ptr) {
-    PREV_NODE_PTR(head_ptr) = new_node_ptr;
-    NODE_LINK_INIT(new_node_ptr, head_ptr, 0);
-    return new_node_ptr;
+/* insert $new between $prev and $next, return pointer on $new */
+void* list_insert(void* new, void* prev, void* next) {
+    *(node_link_t*)new = (node_link_t){prev, next};
+    return ((node_link_t*)prev)->next = ((node_link_t*)next)->prev = new;
 }
 
-// return next node by pointer
-size_t list_iter_down(size_t node) {
-    return NEXT_NODE_PTR(node);
+/* delete nodes between $from and $to */
+void list_nodes_del(void* from, void* to) {
+    ((node_link_t*)from)->next = to;
+    ((node_link_t*)to)->prev = from;
 }
 
-// return previous node by pointer
-size_t list_iter_up(size_t node) {
-    return PREV_NODE_PTR(node);
-}
-
-// delete nodes betven $from_node and $to_node
-void list_node_delete(size_t from_node, size_t to_node) {
-    NEXT_NODE_PTR(from_node) = to_node;
-    PREV_NODE_PTR(to_node) = from_node;
-}
-
-// delete list, in nodes field "data" was not dynamicly allocated
-void list_delete_static(size_t head, void(*free_data)(void*))
-{
-    size_t current_node = head;
-    size_t next_node = 0;
-    while(current_node != 0) {
-        next_node = NEXT_NODE_PTR(current_node);
-        free_data((void*)current_node);
-        current_node = next_node;
-    }
-}
+/* -----------------------------------
+ * Each node of the list must contain:
+ * struct node_name *prev, *next;
+ * at the beginning.
+ * -----------------------------------
+ * Example:
+ 
+   typedef struct your_node_name {
+       struct your_node_name *prev, *next;
+       int my_cool_int;
+       float my_cool_float;
+       ...
+       strcut { ... } name;
+   } some_node_name;
+ */
 
 #endif /* maksspace_list_h */
