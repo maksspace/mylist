@@ -1,7 +1,7 @@
 # mylist
 Doubly linked list implementation in C
 # using
-You can create any kind of data structure as a list of sites that should be as follows:
+You can create any kind of data structure as nodes that should be as follows:
  ```C
  typedef struct your_node_name {
        struct your_node_name *prev, *next;
