@@ -23,10 +23,10 @@ void* list_append(void* tail, void* node) {
     return ((node_link_t*)tail)->next = node;
 }
 
-/* insert $new between $prev and $next, return pointer on $new */
-void* list_insert(void* new, void* prev, void* next) {
-    *(node_link_t*)new = (node_link_t){prev, next};
-    return ((node_link_t*)prev)->next = ((node_link_t*)next)->prev = new;
+/* insert $new_node between $prev and $next, return pointer on $new_node */
+void* list_insert(void* new_node, void* prev, void* next) {
+    *(node_link_t*)new_node = (node_link_t){prev, next};
+    return ((node_link_t*)prev)->next = ((node_link_t*)next)->prev = new_node;
 }
 
 /* delete nodes between $from and $to */
