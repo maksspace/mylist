@@ -26,7 +26,7 @@ void* list_prepend(void* node, void* head);
  ```C
 void* list_insert(void* new, void* prev, void* next);
  ```
- Delete nodes between `from` and `to`
+ Delete nodes between `from` and `to`. Return a pointer to deleted nodes, or NULL if betwen 'from' and 'to' is empty. 
  ```C
 void list_nodes_del(void* from, void* to);
  ```
