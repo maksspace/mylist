@@ -5,10 +5,7 @@ You can create any kind of data structures as nodes that should be as follows:
  ```C
  typedef struct your_node_name {
        struct your_node_name *prev, *next;
-       int my_cool_int;
-       float my_cool_float;
-       ...
-       strcut { ... } name;
+       ... // your fields
    } some_node_name;
  ```
 This library does not have a special function for creating new nodes. Just create a pointer to the new node and allocate memory for it using any memory allocator that you find suitable.

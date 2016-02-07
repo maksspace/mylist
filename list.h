@@ -78,11 +78,8 @@ void* list_nodes_del(void* from, void* to) {
  * Example:
  
  typedef struct your_node_name {
- struct your_node_name *prev, *next;
- int my_cool_int;
- float my_cool_float;
- ...
- strcut { ... } name;
+    struct your_node_name *prev, *next;
+    ... // your fields
  } some_node_name;
  */
 
