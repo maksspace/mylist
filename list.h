@@ -30,7 +30,7 @@
 /* entry point in node */
 #define LIST_LINK(type) struct type *prev, *next
 
-typedef struct { void *prev, *next; } __node_link_t;
+typedef struct { void *prev, *next; } _node_link_t;
 
 /* this macros through the list starting from the head while maintaining the current node in current */
 #define list_foreach(type, current, head) \
@@ -38,35 +38,35 @@ for(type* current = head; current != NULL; current = current->next)
 
 /* node init */
 void list_node_init(void* node) {
-    *(__node_link_t*)node = (__node_link_t){NULL, NULL};
+    *(_node_link_t*)node = (_node_link_t){NULL, NULL};
 }
 
 /* insert node before head, and return pointer on new head of list */
 void* list_prepend(void* node, void* head) {
-    *(__node_link_t*)node = (__node_link_t){NULL, head};
-    return ((__node_link_t*)head)->prev = node;
+    *(_node_link_t*)node = (_node_link_t){NULL, head};
+    return ((_node_link_t*)head)->prev = node;
 }
 
 /* insert node after tail, and return pointer on new tail of list */
 void* list_append(void* tail, void* node) {
-    *(__node_link_t*)node = (__node_link_t){tail, NULL};
-    return ((__node_link_t*)tail)->next = node;
+    *(_node_link_t*)node = (_node_link_t){tail, NULL};
+    return ((_node_link_t*)tail)->next = node;
 }
 
 /* insert new_node between prev and next, return pointer on new_node */
 void* list_insert(void* new_node, void* prev, void* next) {
-    *(__node_link_t*)new_node = (__node_link_t){prev, next};
-    return ((__node_link_t*)prev)->next = ((__node_link_t*)next)->prev = new_node;
+    *(_node_link_t*)new_node = (_node_link_t){prev, next};
+    return ((_node_link_t*)prev)->next = ((_node_link_t*)next)->prev = new_node;
 }
 
 /* delete nodes between `from` and `to`. return a pointer to deleted nodes, or NULL if  betwen `from` and `to` is empty */
 void* list_nodes_del(void* from, void* to) {
-    if(((__node_link_t*)from)->next == to) return NULL;
-    ((__node_link_t*)((__node_link_t*)to)->prev)->next = NULL;
-    ((__node_link_t*)((__node_link_t*)from)->next)->prev = NULL;
-    void* sub_list_ptr = ((__node_link_t*)from)->next;
-    ((__node_link_t*)from)->next = to;
-    ((__node_link_t*)to)->prev = from;
+    if(((_node_link_t*)from)->next == to) return NULL;
+    ((_node_link_t*)((_node_link_t*)to)->prev)->next = NULL;
+    ((_node_link_t*)((_node_link_t*)from)->next)->prev = NULL;
+    void* sub_list_ptr = ((_node_link_t*)from)->next;
+    ((_node_link_t*)from)->next = to;
+    ((_node_link_t*)to)->prev = from;
     return sub_list_ptr;
 }
 
