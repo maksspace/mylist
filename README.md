@@ -31,6 +31,14 @@ This macros through the list starting from the `head` while maintaining the curr
  ```C
 list_foreach(head, current) { ... }
 ```
+This macro delete all nodes `type` from list, starting from the `head`, using `free _ data` and `free_node` to free memory.
+ ```C 
+list_del(type, head, free_data, free_node);
+```
+Same as list_del, but data of node is static and don't need to free.
+ ```C 
+list_del(type, head, free_data, free_node);
+```
 # features
 - Simple
 - Node type can be anything.
