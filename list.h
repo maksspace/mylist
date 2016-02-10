@@ -70,18 +70,42 @@ void* list_nodes_del(void* from, void* to) {
     return sub_list_ptr;
 }
 
+/* delete all nodes from list, starting from the 'head', using 'free_data' and 'free_node' function for free memory */
+#define list_del(type, head, free_data, free_node) { \
+    type* current = (head), *next;                   \
+    while(current != NULL) {                         \
+        next = current->next;                        \
+        if(free_data != NULL) free_data(current);    \
+        free_node(current);                          \
+        current = next;                              \
+    }                                                \
+};
+
+/* same list_del, but only memory node will freed */
+#define list_del_static(type, head, free_node) { \
+    type* current = (head), *next;               \
+    while(current != NULL) {                     \
+        next = current->next;                    \
+        free_node(current);                      \
+        current = next;                          \
+    }                                            \
+};
+
+
 /* -----------------------------------
  * Each node of the list must contain:
  * struct node_name *prev, *next;
  * at the beginning.
  * -----------------------------------
  * Example:
- 
- typedef struct your_node_name {
-    struct your_node_name *prev, *next;
-    ... // your fields
- } some_node_name;
  */
+// typedef struct your_node_name {
+//     struct your_node_name *prev, *next;
+//     int my_cool_int;
+//     float my_cool_float;
+//     ...
+//     struct { ... } name;
+// } some_node_name;
 
 #endif /* maksspace_list_h */
 
