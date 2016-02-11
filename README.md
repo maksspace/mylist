@@ -37,7 +37,7 @@ list_del(type, head, free_data, free_node);
 ```
 Same as `list_del(...)`, but data of node is static and don't need to free.
  ```C 
-list_del(type, head, free_data, free_node);
+list_del_static(type, head, free_data, free_node);
 ```
 # features
 - Simple
