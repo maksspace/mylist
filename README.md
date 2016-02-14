@@ -1,6 +1,7 @@
 # mylist
 Doubly linked list implementation in C
 # usage
+Just include `list.h` into your project.
 You can create any kind of data structures as nodes that should be as follows:
  ```C
  typedef struct your_node_name {
