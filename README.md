@@ -20,6 +20,16 @@ This library does not have a special function for creating new nodes. Just creat
  ```C
  void* list_append(void* tail, void* node);
  ```
+ Init s list iterator starting from `head`.
+ ```C
+ void list_iter_init(list_iter_t* iter, void* head);
+ ```
+ Return pointer to next and previous nodes respectively.
+ ```C
+ void* list_iter_next(list_iter_t* iter);
+
+ void* list_iter_prev(list_iter_t* iter);
+ ```
  Insert `node` before `head`, and return a pointer to the new head of the list.
   ```C
 void* list_prepend(void* node, void* head);
