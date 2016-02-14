@@ -10,6 +10,10 @@ You can create any kind of data structures as nodes that should be as follows:
  ```
 This library does not have a special function for creating new nodes. Just create a pointer to the new node and allocate memory for it using any memory allocator that you find suitable.
 
+# data types
+`list_iter_t` - list iterator struct
+
+
 # api
  Insert `node` after `tail`, and return a pointer to the new tail of the list.
  ```C

@@ -32,6 +32,11 @@
 
 typedef struct { void *prev, *next; } _node_link_t;
 
+/* list iterator */
+typedef struct {
+    void* current;
+} list_iter_t;
+
 /* this macros through the list starting from the head while maintaining the current node in current */
 #define list_foreach(type, current, head) \
     for(type* current = head; current != NULL; current = current->next)
@@ -39,6 +44,24 @@ typedef struct { void *prev, *next; } _node_link_t;
 /* node init */
 void list_node_init(void* node) {
     *(_node_link_t*)node = (_node_link_t){NULL, NULL};
+}
+
+/* iterator init */
+void list_iter_init(list_iter_t* iter, void* current) {
+    iter->current = current;
+}
+
+/* return pointer to next and previous nodes respectively */
+void* list_iter_next(list_iter_t* iter) {
+    if(iter->current != NULL)
+        return iter->current = ((_node_link_t*)iter->current)->next;
+    else return NULL;
+}
+
+void* list_iter_prev(list_iter_t* iter) {
+    if(iter->current != NULL)
+        return iter->current = ((_node_link_t*)iter->current)->prev;
+    else return NULL;
 }
 
 /* insert node before head, and return pointer on new head of list */
@@ -73,23 +96,23 @@ void* list_nodes_del(void* from, void* to) {
 /* delete all nodes from list, starting from the 'head', using 'free_data' and 'free_node' function for free memory */
 #define list_del(type, head, free_data, free_node) { \
     type* current = (head), *next;                   \
-    if(free_data == NULL)                            \
-        while(current != NULL) {                     \
-            next = current->next;                    \
-            free_node(current);                      \
-            current = next;                          \
-        }                                            \
-    else                                             \
-        while(current != NULL) {                     \
-            next = current->next;                    \
-            free_data(current);                      \
-            free_node(current);                      \
-            current = next;                          \
-        }                                            \
-    };
+    while(current != NULL) {                         \
+        next = current->next;                        \
+        free_data(current);                          \
+        free_node(current);                          \
+        current = next;                              \
+    }                                                \
+};
 
 /* same as list_del, but only memory node will freed */
-#define list_del_static(type, head, free_node) list_del(type, head, NULL, free_node)
+#define list_del_static(type, head, free_node) { \
+    type* current = (head), *next;                   \
+    while(current != NULL) {                         \
+        next = current->next;                        \
+        free_node(current);                          \
+        current = next;                              \
+    }                                                \
+};
 
 #endif /* maksspace_list_h */
 
