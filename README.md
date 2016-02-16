@@ -12,7 +12,7 @@ You can create any kind of data structures as nodes that should be as follows:
 This library does not have a special function for creating new nodes. Just create a pointer to the new node and allocate memory for it using any memory allocator that you find suitable.
 
 # example
-Create list with listener of radio, and print it.
+Create list contains listeners of radio, and print it.
 ```C
 #include <stdio.h>
 #include <stdlib.h>
