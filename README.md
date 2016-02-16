@@ -11,6 +11,44 @@ You can create any kind of data structures as nodes that should be as follows:
  ```
 This library does not have a special function for creating new nodes. Just create a pointer to the new node and allocate memory for it using any memory allocator that you find suitable.
 
+# example
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+
+typedef struct listener {
+    LIST_LINK(listener);
+    int age;
+} listener_t;
+
+int main(int argc, char *argv[])
+{
+    listener_t* radio_listeners = malloc(sizeof(listener_t));
+    radio_listeners->age = 0;
+    list_node_init(radio_listeners);
+
+    listener_t* cur;
+    for(int i = 1; i < 10000; i++) {
+        cur = malloc(sizeof(listener_t));
+        cur->age = i;
+        radio_listeners = list_prepend(cur, radio_listeners);
+    }
+    
+    list_iter_t* it = malloc(sizeof(list_iter_t));
+    list_iter_init(it, radio_listeners);
+    
+    while((cur = list_iter_next(it))) {
+        printf("%d\n", cur->age);
+    }
+    
+    list_del_static(listener_t, radio_listeners, free);
+    
+    return 0;
+}
+
+```
+
 # data types
 `list_iter_t` - list iterator struct
 
