@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 ```
 
 # data types
-`list_iter_t` - list iterator struct
+`list_iter_t` - list iterator
 
 
 # api
