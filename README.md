@@ -5,9 +5,16 @@ Just include `list.h` into your project.
 You can create any kind of data structures as nodes that should be as follows:
  ```C
  typedef struct your_node_name {
-       LIST_LINK(your_node_name)
-       ... // your fields
-   } some_node_name;
+       LIST_LINK(your_node_name);
+       // ... your fields
+   } your_node_name_t;
+ ```
+ or
+  ```C
+ struct your_node_name {
+     LIST_LINK(your_node_name);
+     // ... your fields
+ };
  ```
 This library does not have a special function for creating new nodes. Just create a pointer to the new node and allocate memory for it using any memory allocator that you find suitable.
 
