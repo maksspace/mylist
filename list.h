@@ -104,7 +104,7 @@ void* list_nodes_del(void* from, void* to) {
     }                                                \
 };
 
-/* same as list_del, but only memory node will freed */
+/* same as list_del, but only data node will freed */
 #define list_del_static(type, head, free_node) { \
     type* current = (head), *next;                   \
     while(current != NULL) {                         \
