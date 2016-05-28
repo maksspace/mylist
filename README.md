@@ -97,10 +97,12 @@ list_foreach(head, current) { ... }
 This macro delete all nodes `type` from list, starting from the `head`, using `free _ data` and `free_node` to free memory.
  ```C 
 list_del(type, head, free_data, free_node);
+list_del(head, free_data, free_node); // for GCC
 ```
 Same as `list_del(...)`, but data of node is static and don't need to free.
  ```C 
 list_del_static(type, head, free_node);
+list_del_static(head, free_node); // for GCC
 ```
 # features
 - Simple
