@@ -1,6 +1,17 @@
 # mylist
 Doubly linked list implementation in C
-# Put a star :)
+
+# features
+- Simple
+- Node type can be anything.
+- Any memory allocator can be used
+
+# author
+- name      : Smagin Maksim
+- vkontakte : http://vk.com/maksspace
+- email     : maksspaceworld@yandex.ru
+- facebook  : https://www.facebook.com/maksspaceworld
+
 # usage
 Just include `list.h` into your project.
 You can create any kind of data structures as nodes that should be as follows:
@@ -104,13 +115,3 @@ Same as `list_del(...)`, but data of node is static and don't need to free.
 list_del_static(type, head, free_node);
 list_del_static(head, free_node); // for GCC
 ```
-# features
-- Simple
-- Node type can be anything.
-- Any memory allocator can be used
-
-# author
-name      : Smagin Maksim
-vkontakte : http://vk.com/maksspace
-email     : maksspaceworld@yandex.ru
-facebook  : https://www.facebook.com/maksspaceworld
