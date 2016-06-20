@@ -7,7 +7,7 @@ Doubly linked list implementation in C
 - Any memory allocator can be used
 
 # author
-- name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Smagin Maksim
+- name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Smagin Maksim
 - vkontakte : http://vk.com/maksspace
 - email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: maksspaceworld@yandex.ru
 - facebook &nbsp;: https://www.facebook.com/maksspaceworld
