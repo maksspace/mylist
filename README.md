@@ -110,4 +110,4 @@ list_del_static(head, free_node); // for GCC
 - Any memory allocator can be used
 
 # author
-maksspace, maksspaceworld@yandex.ru
+Smagin Maksim, (http://vk.com/maksspaces), maksspaceworld@yandex.ru
