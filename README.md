@@ -9,7 +9,7 @@ Doubly linked list implementation in C
 # author
 - name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Smagin Maksim
 - vkontakte : http://vk.com/maksspace
-- email     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: maksspaceworld@yandex.ru
+- email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: maksspaceworld@yandex.ru
 - facebook &nbsp;: https://www.facebook.com/maksspaceworld
 
 # usage
