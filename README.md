@@ -10,7 +10,7 @@ Doubly linked list implementation in C
 - name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Smagin Maksim
 - vkontakte : http://vk.com/maksspace
 - email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: maksspaceworld@yandex.ru
-- facebook &nbsp;: https://www.facebook.com/maksspaceworld
+- facebook : https://www.facebook.com/maksspaceworld
 
 # usage
 Just include `list.h` into your project.
