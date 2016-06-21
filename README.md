@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 ```
 
 # data types
-`list_iter_t` - list iterator
+`list_iter_t` - iterator list
 
 
 # api
