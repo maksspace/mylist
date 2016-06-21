@@ -101,7 +101,7 @@ void* list_insert(void* new, void* prev, void* next);
  ```C
 void list_nodes_del(void* from, void* to);
  ```
-This macros through the list starting from the `head` while maintaining the current node in `current`
+This macro through the list starting from the `head` while maintaining the current node in `current`
  ```C
 list_foreach(head, current) { ... }
 ```
