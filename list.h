@@ -35,7 +35,10 @@
 // Entry point in node
 #define LIST_LINK(type) struct type *prev, *next
 
-typedef struct { void *prev, *next; } _node_link_t;
+typedef struct {
+    void *prev,
+         *next; 
+} _node_link_t;
 
 // List iterator
 typedef struct {
